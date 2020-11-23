@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import { BOLD_TEXT, LINK_STYLES } from '../../constants/emotionCSSrules';
+import { LINK_STYLES } from '../../constants/emotionCSSrules';
 
 export default function EstablishmentPreview({ establishment }) {
   const link = `/establishment/${establishment.id}`;
@@ -36,10 +36,9 @@ export default function EstablishmentPreview({ establishment }) {
               <Grid css={css`align-self: flex-end;`} item lg={4}>
                 <Typography
                   align='right'
-                  css={BOLD_TEXT}
                   gutterBottom
                   >
-                  Price: €{establishment.price},-
+                  <strong>Price: €{establishment.price},-</strong>
                 </Typography>
               </Grid>
             </Grid>

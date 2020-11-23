@@ -1,1 +1,1 @@
-export const BASE_API_URL = 'http://bronto:1337';
+export const BASE_API_URL = 'https://holidaze-backend.herokuapp.com';

@@ -27,13 +27,27 @@ const NAV_STYLE = css`
   }
 `;
 
-export default function Heading() {
+export default function Header() {
   return (
     <header css={HEADER_STYLE}>
-      <Typography variant='h2'>
+      <Typography
+        css={css`
+          @media (max-width: 600px) {
+            font-size: 2rem;
+          }
+          `}
+        variant='h2'
+        >
         <Link css={LINK_STYLES} to='/'>Holidaze</Link>
       </Typography>
-      <Typography variant='h5'>
+      <Typography
+        css={css`
+          @media (max-width: 600px) {
+            font-size: 1rem;
+          }
+          `}
+        variant='h5'
+        >
         <nav css={NAV_STYLE}>
           <li>
             <NavLink

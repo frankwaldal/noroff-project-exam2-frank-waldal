@@ -17,7 +17,3 @@ export const LINK_STYLES = css`
 export const MAIN_TOP_MARGIN = css`
   margin-top: 0.75rem;
 `;
-
-export const BOLD_TEXT = css`
-  font-weight: 600;
-`;

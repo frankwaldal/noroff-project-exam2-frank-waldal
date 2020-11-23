@@ -7,6 +7,8 @@ const GlobalContext = createContext();
 
 export default function GlobalContextProvider({ children }) {
   const [apiToken, setApiToken] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [openTab, setOpenTab] = useState('enquiries');
 
   useQuery('getApiToken', getApiToken, {
     enabled: apiToken === '',
@@ -23,7 +25,11 @@ export default function GlobalContextProvider({ children }) {
     <GlobalContext.Provider
       value={{
         apiToken,
+        isLoggedIn,
+        openTab,
+        toggleLoggedIn: (value) => setIsLoggedIn(value),
         updateApiToken: (token) => updateApiToken(token),
+        updateOpenTab: (tab) => setOpenTab(tab),
       }}
       >
       {children}

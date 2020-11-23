@@ -1,7 +1,7 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Heading from './components/Heading';
+import Header from './components/Header';
 import { globalStyleTheme } from './constants/materialTheme';
 import GlobalContextProvider from './context/GlobalContextProvider';
 import AdminPage from './pages/AdminPage/AdminPage';
@@ -15,7 +15,7 @@ export default function App() {
       <GlobalContextProvider>
         <CssBaseline />
         <Router>
-          <Heading />
+          <Header />
           <Switch>
             <Route path='/' exact>
               <HomePage />

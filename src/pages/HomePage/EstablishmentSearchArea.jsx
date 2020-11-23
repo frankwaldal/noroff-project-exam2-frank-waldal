@@ -17,6 +17,11 @@ const ESTABLISHMENT_AREA_STYLES = css`
   border-radius: 5px;
   background: ${globalStyleTheme.palette.background.default};
   box-shadow: 0 0 7px rgba(33, 53, 61, 0.3);
+
+  @media (max-width: 600px) {
+    width: 100vw;
+    height: max-content;
+  }
 `;
 const SEARCHBOX_STYLES = css`
   width: 80%;
