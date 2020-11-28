@@ -45,7 +45,7 @@ export default function ContactPage() {
         updateApiToken('');
       }
     }
-  })
+  });
   function postContact(values) {
     postNewContactMutation({ apiToken, payload: values });
   }
@@ -56,6 +56,21 @@ export default function ContactPage() {
       </Typography>
       {postNewContactMutationStatus.isLoading ? (
         <LinearProgress variant='query' />
+      ) : null}
+      {postNewContactMutationStatus.isError ? (
+        <>
+          <Typography align='center' variant='h5' color='error'>
+            Something went wrong. Please try again.
+          </Typography>
+          <Typography align='center' color='error'>
+            {postNewContactMutationStatus.error.message}
+          </Typography>
+        </>
+      ) : null}
+      {postNewContactMutationStatus.isSuccess ? (
+        <Typography align='center' variant='h5' color='primary'>
+          Your message was sent successfully.
+        </Typography>
       ) : null}
       <form
         css={css`

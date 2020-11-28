@@ -4,16 +4,14 @@ import { css } from '@emotion/core';
 import { Container, Grid, LinearProgress, Typography } from '@material-ui/core';
 import reverse from 'lodash/reverse';
 import sortBy from 'lodash/sortBy';
-import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { useHistory } from 'react-router-dom';
 
 import BannerImage from '../../assets/bannerImage.png';
+import EstablishmentSearchBox from '../../components/EstablishmentSearchBox';
 import { LINK_STYLES, MAIN_TOP_MARGIN } from '../../constants/emotionCSSrules';
 import { useGlobalContext } from '../../context/GlobalContextProvider';
-import { getEstablishments } from '../../utils/apiUtils';
 import EstablishmentPreview from './EstablishmentPreview';
-import EstablishmentSearchArea from './EstablishmentSearchArea';
+import { getEstablishments } from '../../utils/apiUtils';
 
 const SEARCH_BANNER_STYLES = css`
   position: relative;
@@ -40,34 +38,24 @@ const ATTRIBUTION_LINK_STYLE = css`
 `;
 
 export default function HomePage() {
-  const [establishments, setEstablishments] = useState([]);
-  const { apiToken, updateApiToken } = useGlobalContext();
-  const history = useHistory();
+  const { apiToken, establishments, updateApiToken, updateEstablishments } = useGlobalContext();
 
-  const fetchingEstablishments = useQuery(apiToken, getEstablishments, {
-    enabled: apiToken !== '' && establishments.length === 0,
+  const fetchingEstablishments = useQuery([apiToken, 'fetchEstablishments'], getEstablishments, {
+    enabled: apiToken !== '',
     onSuccess: data => {
-      setEstablishments(reverse(sortBy(data, 'pageBrowsed')));
+      updateEstablishments(reverse(sortBy(data, 'pageBrowsed')));
     },
     onError: data => {
       if (data.statusCode === 401) {
         updateApiToken('');
       }
-    }
+    },
   });
-
-  function goToEstablishment(value) {
-    const path = `/establishment/${value.id}`;
-    history.push(path);
-  }
 
   return (
     <>
       <div css={SEARCH_BANNER_STYLES}>
-        <EstablishmentSearchArea
-          establishments={establishments}
-          goToEstablishment={goToEstablishment}
-          />
+        <EstablishmentSearchBox />
         <Typography css={css`color: #fafafa;`}>
           <a
             css={[ATTRIBUTION_LINK_STYLE, LINK_STYLES]}
@@ -82,6 +70,16 @@ export default function HomePage() {
       <Container css={MAIN_TOP_MARGIN}>
         {fetchingEstablishments.isLoading ? (
           <LinearProgress variant='query' />
+        ) : null}
+        {fetchingEstablishments.isError ? (
+          <>
+            <Typography variant='h5' color='error'>
+              Something went wrong. Please try to refresh the page.
+            </Typography>
+            <Typography color='error'>
+              {fetchingEstablishments.error.message}
+            </Typography>
+          </>
         ) : null}
         <Grid container spacing={2}>
           {establishments.map(establishment => (

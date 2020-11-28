@@ -4,8 +4,10 @@ import { css } from '@emotion/core';
 import { CircularProgress, TextField, Typography } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import sortBy from 'lodash/sortBy';
+import { useHistory } from 'react-router-dom';
 
-import { globalStyleTheme } from '../../constants/materialTheme';
+import { globalStyleTheme } from '../constants/materialTheme';
+import { useGlobalContext } from '../context/GlobalContextProvider';
 
 const ESTABLISHMENT_AREA_STYLES = css`
   position: absolute;
@@ -28,10 +30,29 @@ const SEARCHBOX_STYLES = css`
   margin: 0.5rem auto;
 `;
 
-export default function EstablishmentSearchArea({ establishments, goToEstablishment }) {
+export default function EstablishmentSearchBox({ noHeader }) {
+  const { establishments } = useGlobalContext();
+  const history = useHistory();
+
+  function goToEstablishment(value) {
+    const path = `/establishment/${value.id}`;
+    history.push(path);
+  }
+
   return(
-    <div css={ESTABLISHMENT_AREA_STYLES}>
-      <Typography variant='h4'>Search for a place to stay</Typography>
+    <div
+      css={[
+        ESTABLISHMENT_AREA_STYLES,
+        css`
+          ${noHeader ? 'min-width: 350px;' : ''}
+          ${noHeader ? 'box-shadow: none;' : ''}
+          @media (max-width: 950px) {
+            ${noHeader ? 'display: none;' : ''}
+          }
+        `
+      ]}
+      >
+      {noHeader ? null : <Typography variant='h4'>Search for a place to stay</Typography>}
       <Autocomplete
         css={SEARCHBOX_STYLES}
         id='establishment-search'

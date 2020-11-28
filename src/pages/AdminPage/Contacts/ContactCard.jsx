@@ -1,29 +1,30 @@
 /** @jsxImportSource @emotion/core */
 
 import { css } from '@emotion/core';
-import { Button, Grid, LinearProgress, Typography } from '@material-ui/core';
+import { Button, Grid, LinearProgress, Tooltip, Typography } from '@material-ui/core';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { queryCache, useMutation } from 'react-query';
 
 import { useGlobalContext } from '../../../context/GlobalContextProvider';
 import ContactCardExpanded from './ContactCardExpanded';
 import { deleteSpecificContact } from '../../../utils/apiUtils';
 
-export default function ContactCard({ contact, toggleEnableFetch }){
+export default function ContactCard({ contact, successfulDeleted }){
   const [openExpandedCard, setOpenExpandedCard] = useState(false);
   const { apiToken, updateApiToken } = useGlobalContext();
 
   const [deleteContactMutation, deleteContactMutationStatus] = useMutation(deleteSpecificContact, {
     onSuccess: () => {
-      toggleEnableFetch();
+      queryCache.refetchQueries([apiToken, 'fetchContacts']);
+      successfulDeleted();
     },
     onError: data => {
       if (data.statusCode === 401) {
         updateApiToken('');
       }
-    }
+    },
   });
 
   function deleteContact() {
@@ -35,6 +36,12 @@ export default function ContactCard({ contact, toggleEnableFetch }){
     <>
       {deleteContactMutationStatus.isLoading ? (
         <LinearProgress variant='query' />
+      ) : null}
+      {deleteContactMutationStatus.isError ? (
+        <>
+          <Typography variant='h5' color='error'>Something went wrong. Please try again.</Typography>
+          <Typography color='error'>{deleteContactMutationStatus.error.message}</Typography>
+        </>
       ) : null}
       <Grid item lg={6} md={12}>
         <Grid
@@ -67,12 +74,25 @@ export default function ContactCard({ contact, toggleEnableFetch }){
             item
             lg={3}
             >
-            <Button onClick={() => deleteContact()}><DeleteForeverOutlinedIcon /></Button>
-            <Button onClick={() => setOpenExpandedCard(!openExpandedCard)}><OpenInNewIcon /></Button>
+            <Tooltip title='Delete contact'>
+              <Button onClick={() => deleteContact()}>
+                <DeleteForeverOutlinedIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title='Open expanded view'>
+              <Button onClick={() => setOpenExpandedCard(!openExpandedCard)}>
+                <OpenInNewIcon />
+              </Button>
+            </Tooltip>
           </Grid>
         </Grid>
       </Grid>
-      {openExpandedCard && <ContactCardExpanded contact={contact} toggleExpandCard={() => setOpenExpandedCard(!openExpandedCard)} />}
+      {openExpandedCard && (
+        <ContactCardExpanded
+          contact={contact}
+          toggleExpandCard={() => setOpenExpandedCard(!openExpandedCard)}
+          />
+      )}
     </>
   )
 }

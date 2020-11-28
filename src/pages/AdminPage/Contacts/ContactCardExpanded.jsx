@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { LINK_STYLES } from '../../../constants/emotionCSSrules';
 import { globalStyleTheme } from '../../../constants/materialTheme';
 
-const EXPANDED_CONTACT_CARD_STYLES = css`
+export const EXPANDED_CARD_STYLES = css`
   position: fixed;
   top: 100px;
   right: 1rem;
@@ -23,7 +23,7 @@ export default function ContactCardExpanded({ contact, toggleExpandCard }) {
   const mailtoLink = `mailto:${contact.email}`;
   const messageSegments = contact.message.split('\n');
   return (
-    <div css={EXPANDED_CONTACT_CARD_STYLES}>
+    <div css={EXPANDED_CARD_STYLES}>
       <div
         css={css`
           display: flex;
@@ -34,11 +34,15 @@ export default function ContactCardExpanded({ contact, toggleExpandCard }) {
         <Button onClick={toggleExpandCard}><CloseIcon /></Button>
       </div>
       <Typography gutterBottom><strong>Name: </strong>{contact.name}</Typography>
-      <Typography gutterBottom><strong>Email: </strong><a href={mailtoLink} css={LINK_STYLES}>{contact.email}</a></Typography>
+      <Typography gutterBottom>
+        <strong>Email: </strong><a href={mailtoLink} css={LINK_STYLES}>{contact.email}</a>
+      </Typography>
       <Typography gutterBottom><strong>Phone: </strong>{contact.phone}</Typography>
       <Typography gutterBottom>
         <strong>Message: </strong>
-        {messageSegments.map((messageSegment, index) => <span key={messageSegment+index}>{messageSegment}<br /></span>)}
+        {messageSegments.map((messageSegment, index) => (
+          <span key={messageSegment+index}>{messageSegment}<br /></span>
+        ))}
       </Typography>
     </div>
   )

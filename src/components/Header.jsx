@@ -2,10 +2,11 @@
 
 import { css } from '@emotion/core';
 import { Typography } from '@material-ui/core';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import { LINK_STYLES } from '../constants/emotionCSSrules';
 import { globalStyleTheme } from '../constants/materialTheme';
+import EstablishmentSearchBox from './EstablishmentSearchBox';
 
 const HEADER_STYLE = css`
   position: sticky;
@@ -17,7 +18,7 @@ const HEADER_STYLE = css`
   justify-content: space-between;
   align-items: flex-end;
   box-shadow: 0 0 7px rgba(33, 53, 61, 0.3);
-  z-index: 9999;
+  z-index: 1000;
 `;
 const NAV_STYLE = css`
   display: flex;
@@ -28,6 +29,9 @@ const NAV_STYLE = css`
 `;
 
 export default function Header() {
+  const { pathname } = useLocation();
+  const splitPathname = pathname.split('/');
+
   return (
     <header css={HEADER_STYLE}>
       <Typography
@@ -40,6 +44,9 @@ export default function Header() {
         >
         <Link css={LINK_STYLES} to='/'>Holidaze</Link>
       </Typography>
+      {splitPathname[1] !== '' ? (
+        <EstablishmentSearchBox noHeader />
+      ) : null}
       <Typography
         css={css`
           @media (max-width: 600px) {

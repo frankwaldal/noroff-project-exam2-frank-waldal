@@ -47,6 +47,14 @@ export default function Login() {
       {loginMutationStatus.isLoading ? (
         <LinearProgress variant='query' />
       ) : null}
+      {loginMutationStatus.isError ? (
+        <>
+          <Typography variant='h5' color='error'>
+            Something went wrong. Please try again.
+          </Typography>
+          <Typography color='error'>{loginMutationStatus.error.message}</Typography>
+        </>
+      ) : null}
       <Typography align='center' variant='h3' gutterBottom>
         Login
       </Typography>

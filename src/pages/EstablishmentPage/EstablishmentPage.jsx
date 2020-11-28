@@ -1,16 +1,18 @@
 /** @jsxImportSource @emotion/core */
 
 import { css } from '@emotion/core';
-import { Container, LinearProgress, Grid, Typography } from '@material-ui/core';
+import { Button, Container, LinearProgress, Grid, Typography } from '@material-ui/core';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import isEmpty from 'lodash/isEmpty';
 import last from 'lodash/last';
 import { useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { queryCache, useMutation, useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
 
 import MapView from '../../components/MapView';
 import { MAIN_TOP_MARGIN } from '../../constants/emotionCSSrules';
 import { useGlobalContext } from '../../context/GlobalContextProvider';
+import SendEnquiry from './SendEnquiry';
 import { getSpecificEstablishment, updateSpesificEstablishment } from '../../utils/apiUtils';
 
 export default function EstablishmentPage() {
@@ -18,8 +20,13 @@ export default function EstablishmentPage() {
   const { pathname } = useLocation();
   const establishmentId = last(pathname.split('/'));
   const { apiToken, updateApiToken } = useGlobalContext();
+  const [openSendEnquiry, toggleOpenSendEnquiry] = useState(false);
 
-  const [updatePageBrowsed] = useMutation(updateSpesificEstablishment);
+  const [updatePageBrowsed] = useMutation(updateSpesificEstablishment, {
+    onSuccess: () => {
+      queryCache.refetchQueries([apiToken, 'fetchEstablishments']);
+    }
+  });
 
   const fetchingEstablishment = useQuery([apiToken, establishmentId], getSpecificEstablishment, {
     enabled: apiToken !== '' && isEmpty(establishment),
@@ -42,6 +49,14 @@ export default function EstablishmentPage() {
     <>
       {fetchingEstablishment.isLoading ? (
         <LinearProgress variant='query' />
+      ) : null}
+      {fetchingEstablishment.isError ? (
+        <>
+          <Typography variant='h5' color='error'>
+            Something went wrong. Please try to refresh the page.
+          </Typography>
+          <Typography color='error'>{fetchingEstablishment.error.message}</Typography>
+        </>
       ) : null}
       {!isEmpty(establishment) && (
         <Container css={MAIN_TOP_MARGIN}>
@@ -72,12 +87,34 @@ export default function EstablishmentPage() {
               <Typography align='right' gutterBottom>
                 <strong>Price per night: €{establishment.price},-</strong>
               </Typography>
+              <Typography gutterBottom>
+                Contact: {establishment.establishmentEmail.replace('@', ' (a) ')}
+              </Typography>
             </Grid>
             <Grid item lg={6} sm={12}>
               <MapView position={[establishment.latitude, establishment.longitude]} />
             </Grid>
           </Grid>
         </Container>
+      )}
+      <Button
+        color='primary'
+        css={css`
+          position: fixed;
+          right: 1rem;
+          bottom: 1rem;
+          `}
+        onClick={() => toggleOpenSendEnquiry(!openSendEnquiry)}
+        size='large'
+        variant='contained'
+        >
+        <MailOutlineIcon />
+      </Button>
+      {openSendEnquiry && (
+        <SendEnquiry
+          establishmentId={establishmentId}
+          toggleOpenSendEnquiry={() => toggleOpenSendEnquiry(!openSendEnquiry)}
+          />
       )}
     </>
   )

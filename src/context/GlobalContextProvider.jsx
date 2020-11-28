@@ -9,6 +9,7 @@ export default function GlobalContextProvider({ children }) {
   const [apiToken, setApiToken] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [openTab, setOpenTab] = useState('enquiries');
+  const [establishments, setEstablishments] = useState([]);
 
   useQuery('getApiToken', getApiToken, {
     enabled: apiToken === '',
@@ -17,18 +18,16 @@ export default function GlobalContextProvider({ children }) {
     }
   });
 
-  function updateApiToken(token) {
-    setApiToken(token);
-  }
-
   return (
     <GlobalContext.Provider
       value={{
         apiToken,
+        establishments,
         isLoggedIn,
         openTab,
         toggleLoggedIn: (value) => setIsLoggedIn(value),
-        updateApiToken: (token) => updateApiToken(token),
+        updateApiToken: (token) => setApiToken(token),
+        updateEstablishments: (establishments) => setEstablishments(establishments),
         updateOpenTab: (tab) => setOpenTab(tab),
       }}
       >

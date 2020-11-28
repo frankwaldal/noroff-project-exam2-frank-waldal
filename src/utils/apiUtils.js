@@ -56,6 +56,26 @@ export async function updateSpesificEstablishment({ apiToken, establishmentId, p
   })).json();
 }
 
+export async function postNewEstablishment({ apiToken, payload }) {
+  return (await fetch(`${BASE_API_URL}/establishments`, {
+    method: 'post',
+    headers: {
+      "Authorization": `Bearer ${apiToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })).json();
+}
+
+export async function deleteSpecificEstablishment({ apiToken, establishmentId }) {
+  return (await fetch(`${BASE_API_URL}/establishments/${establishmentId}`, {
+    method: 'delete',
+    headers: {
+      "Authorization": `Bearer ${apiToken}`
+    }
+  })).json();
+}
+
 export async function getContacts(apiToken) {
   return (await fetch(`${BASE_API_URL}/contacts`, {
     headers: {
@@ -77,6 +97,34 @@ export async function postNewContact({ apiToken, payload }) {
 
 export async function deleteSpecificContact({ apiToken, contactId }) {
   return (await fetch(`${BASE_API_URL}/contacts/${contactId}`, {
+    method: 'delete',
+    headers: {
+      "Authorization": `Bearer ${apiToken}`
+    }
+  })).json();
+}
+
+export async function getEnquiries(apiToken) {
+  return (await fetch(`${BASE_API_URL}/enquiries`, {
+    headers: {
+      "Authorization": `Bearer ${apiToken}`
+    }
+  })).json();
+}
+
+export async function postNewEnquiry({ apiToken, payload }) {
+   return (await fetch(`${BASE_API_URL}/enquiries`, {
+     method: 'post',
+     headers: {
+       "Authorization": `Bearer ${apiToken}`,
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify(payload),
+   })).json();
+ }
+
+export async function deleteSpecificEnquiry({ apiToken, enquiryId }) {
+  return (await fetch(`${BASE_API_URL}/enquiries/${enquiryId}`, {
     method: 'delete',
     headers: {
       "Authorization": `Bearer ${apiToken}`
