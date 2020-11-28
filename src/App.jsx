@@ -17,16 +17,16 @@ export default function App() {
         <Router>
           <Header />
           <Switch>
-            <Route path='/' exact>
+            <Route path='/fed/pe2' exact>
               <HomePage />
             </Route>
-            <Route path='/contact'>
+            <Route path='/fed/pe2/contact'>
               <ContactPage />
             </Route>
-            <Route path='/admin'>
+            <Route path='/fed/pe2/admin'>
               <AdminPage />
             </Route>
-            <Route path='/establishment'>
+            <Route path='/fed/pe2/establishment'>
               <EstablishmentPage />
             </Route>
           </Switch>

@@ -12,7 +12,7 @@ import { useGlobalContext } from '../../../context/GlobalContextProvider';
 import { deleteSpecificEstablishment } from '../../../utils/apiUtils';
 
 export default function EstablishmentCard({ establishment, successfulDeleted, toggleEditEstablishment }) {
-  const link = `/establishment/${establishment.id}`;
+  const link = `/fed/pe2/establishment/${establishment.id}`;
   const { apiToken, updateApiToken } = useGlobalContext();
 
   const [deleteEstablishmentMutation, deleteEstablishmentMutationStatus] = useMutation(

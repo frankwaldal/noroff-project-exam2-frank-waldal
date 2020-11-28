@@ -31,6 +31,7 @@ const NAV_STYLE = css`
 export default function Header() {
   const { pathname } = useLocation();
   const splitPathname = pathname.split('/');
+  console.log(splitPathname);
 
   return (
     <header css={HEADER_STYLE}>
@@ -42,7 +43,7 @@ export default function Header() {
           `}
         variant='h2'
         >
-        <Link css={LINK_STYLES} to='/'>Holidaze</Link>
+        <Link css={LINK_STYLES} to='/fed/pe2'>Holidaze</Link>
       </Typography>
       {splitPathname[1] !== '' ? (
         <EstablishmentSearchBox noHeader />
@@ -60,7 +61,7 @@ export default function Header() {
             <NavLink
               activeStyle={{ borderBottom: '3px solid rgba(64, 64, 64, 0.5)' }}
               css={LINK_STYLES}
-              to='/contact'
+              to='/fed/pe2/contact'
               >
               Contact
             </NavLink>
@@ -69,7 +70,7 @@ export default function Header() {
             <NavLink
               activeStyle={{ borderBottom: '3px solid rgba(64, 64, 64, 0.5)' }}
               css={LINK_STYLES}
-              to='/admin'
+              to='/fed/pe2/admin'
               >
               Admin
             </NavLink>
