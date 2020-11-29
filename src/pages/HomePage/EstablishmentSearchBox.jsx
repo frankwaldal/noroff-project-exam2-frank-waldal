@@ -6,8 +6,8 @@ import { Autocomplete } from '@material-ui/lab';
 import sortBy from 'lodash/sortBy';
 import { useHistory } from 'react-router-dom';
 
-import { globalStyleTheme } from '../constants/materialTheme';
-import { useGlobalContext } from '../context/GlobalContextProvider';
+import { globalStyleTheme } from '../../constants/materialTheme';
+import { useGlobalContext } from '../../context/GlobalContextProvider';
 
 const ESTABLISHMENT_AREA_STYLES = css`
   position: absolute;
