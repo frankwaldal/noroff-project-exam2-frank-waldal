@@ -35,7 +35,7 @@ export default function EstablishmentSearchBox({ noHeader }) {
   const history = useHistory();
 
   function goToEstablishment(value) {
-    const path = `/establishment/${value.id}`;
+    const path = `/fed/pe2/establishment/${value.id}`;
     history.push(path);
   }
 
