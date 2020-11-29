@@ -2,6 +2,7 @@
 
 import { css } from '@emotion/core';
 import { Typography } from '@material-ui/core';
+import last from 'lodash/last';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import { LINK_STYLES } from '../constants/emotionCSSrules';
@@ -31,7 +32,6 @@ const NAV_STYLE = css`
 export default function Header() {
   const { pathname } = useLocation();
   const splitPathname = pathname.split('/');
-  console.log(splitPathname);
 
   return (
     <header css={HEADER_STYLE}>
@@ -45,7 +45,7 @@ export default function Header() {
         >
         <Link css={LINK_STYLES} to='/fed/pe2'>Holidaze</Link>
       </Typography>
-      {splitPathname[1] !== '' ? (
+      {last(splitPathname) !== '' && last(splitPathname) !== 'pe2' ? (
         <EstablishmentSearchBox noHeader />
       ) : null}
       <Typography

@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, LinearProgress, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import reverse from 'lodash/reverse';
@@ -32,8 +32,21 @@ export default function Establishments() {
 
   return (
     <Grid container spacing={3}>
+      {fetchingEstablishments.isLoading ? (
+        <LinearProgress variant='query' />
+      ) : null}
+      {fetchingEstablishments.isError ? (
+        <>
+          <Typography variant='h5' color='error'>
+            Something went wrong. Please try to refresh the page.
+          </Typography>
+          <Typography color='error'>
+            {fetchingEstablishments.error.message}
+          </Typography>
+        </>
+      ) : null}
       {successfulDelete ? (
-        <Grid item lg={12}>
+        <Grid item xs={12}>
           <Typography align='center' variant='h5' color='primary'>
             The establishment was deleted successfully.
           </Typography>

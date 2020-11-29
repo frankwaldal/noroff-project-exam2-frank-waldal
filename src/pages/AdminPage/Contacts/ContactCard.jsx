@@ -43,7 +43,7 @@ export default function ContactCard({ contact, successfulDeleted }){
           <Typography color='error'>{deleteContactMutationStatus.error.message}</Typography>
         </>
       ) : null}
-      <Grid item lg={6} md={12}>
+      <Grid item lg={6} xs={12}>
         <Grid
           container
           css={css`
@@ -54,26 +54,19 @@ export default function ContactCard({ contact, successfulDeleted }){
             `}
           spacing={2}
           >
-          <Grid item lg={4}>
-            <Typography>{contact.name}</Typography>
-            <Typography>
+          <Grid item xs={12} sm={4} lg={3}>
+            <Typography gutterBottom>{contact.name}</Typography>
+            <Typography gutterBottom>
               {contact.message.length > 17
                 ? `${contact.message.substring(0,17)}...`
                 : contact.message}
             </Typography>
           </Grid>
-          <Grid item lg={5}>
-            <Typography>{contact.email}</Typography>
-            <Typography>{contact.phone}</Typography>
+          <Grid item xs={12} sm={5} lg={5}>
+            <Typography gutterBottom>{contact.email}</Typography>
+            <Typography gutterBottom>{contact.phone}</Typography>
           </Grid>
-          <Grid
-            css={css`
-              display: flex;
-              justify-content: space-between;
-              `}
-            item
-            lg={3}
-            >
+          <Grid item xs={12} sm={3} lg={4}>
             <Tooltip title='Delete contact'>
               <Button onClick={() => deleteContact()}>
                 <DeleteForeverOutlinedIcon />

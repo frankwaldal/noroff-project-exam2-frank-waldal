@@ -65,7 +65,7 @@ export default function EnquiryCard({ enquiry, successfulDeleted }) {
           </Typography>
         </>
       ) : null}
-      <Grid item lg={6} md={12}>
+      <Grid item lg={6} xs={12}>
         <Grid
           container
           css={css`
@@ -76,24 +76,24 @@ export default function EnquiryCard({ enquiry, successfulDeleted }) {
             `}
           spacing={2}
           >
-          <Grid item lg={12}>
+          <Grid item xs={12}>
             <Typography variant='h5' align='center' gutterBottom>
               {fetchingEstablishment.isLoading
                 ? <LinearProgress variant='query' />
                 : establishmentName}
             </Typography>
           </Grid>
-          <Grid item lg={4}>
-            <Typography>{enquiry.name}</Typography>
-            <Typography>
+          <Grid item xs={12} sm={4} lg={3}>
+            <Typography gutterBottom>{enquiry.name}</Typography>
+            <Typography gutterBottom>
               {enquiry.message.length > 17
                 ? `${enquiry.message.substring(0,17)}...`
                 : enquiry.message}
             </Typography>
-            <Typography>{enquiry.phone}</Typography>
+            <Typography gutterBottom>{enquiry.phone}</Typography>
           </Grid>
-          <Grid item lg={5}>
-            <Typography>{enquiry.email}</Typography>
+          <Grid item xs={12} sm={5} lg={5}>
+            <Typography gutterBottom>{enquiry.email}</Typography>
             {enquiry.wantedCheckIn != null
               ? <Typography gutterBottom>
                   From: {format(new Date(enquiry.wantedCheckIn), 'do MMM yyyy')}
@@ -105,7 +105,7 @@ export default function EnquiryCard({ enquiry, successfulDeleted }) {
                 </Typography>
               : null}
           </Grid>
-          <Grid>
+          <Grid item xs={12} sm={3} lg={4}>
             <Tooltip title='Delete enquiry'>
               <Button onClick={() => deleteEnquiry()}>
                 <DeleteForeverOutlinedIcon />

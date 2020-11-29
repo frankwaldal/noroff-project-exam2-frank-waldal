@@ -75,13 +75,12 @@ export default function UpdateEstablishment({
   );
 
   function updateEstablishment(values) {
-    console.log(values);
     updateEstablishmentMutation({ apiToken, establishmentId, payload: values });
   }
 
   return (
     <>
-      <Grid item lg={12}>
+      <Grid item xs={12}>
         <Button
           color='primary'
           endIcon={<CloseIcon />}
@@ -91,7 +90,10 @@ export default function UpdateEstablishment({
           Close establishment edit
         </Button>
       </Grid>
-      <Grid item lg={12}>
+      <Grid item xs={12}>
+        {updateEstablishmentMutationStatus.isLoading ? (
+          <LinearProgress variant='query' />
+        ) : null}
         {updateEstablishmentMutationStatus.isError ? (
           <>
             <Typography align='center' variant='h5' color='error'>
@@ -116,8 +118,8 @@ export default function UpdateEstablishment({
                 grid-row-gap: 1rem;
                 `}
               item
-              lg={6}
-              sm={12}
+              md={6}
+              xs={12}
               >
               <TextField
                 defaultValue={establishment.establishmentName}
@@ -194,8 +196,8 @@ export default function UpdateEstablishment({
                 grid-row-gap: 1rem;
                 `}
               item
-              lg={6}
-              sm={12}
+              md={6}
+              xs={12}
               >
               <TextField
                 error={!isEmpty(errors.latitude)}

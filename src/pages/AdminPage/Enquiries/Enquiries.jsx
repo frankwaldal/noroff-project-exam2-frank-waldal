@@ -25,7 +25,7 @@ export default function Enquiries() {
 
   return (
     <Grid container spacing={3}>
-      <Grid item lg={12}>
+      <Grid item xs={12}>
         {fetchingEnquiries.isLoading ? (
           <LinearProgress variant='query' />
         ) : null}

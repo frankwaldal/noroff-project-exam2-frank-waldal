@@ -64,7 +64,7 @@ export default function EstablishmentPage() {
             {establishment.establishmentName}
           </Typography>
           <Grid container spacing={2}>
-            <Grid item lg={6} sm={12}>
+            <Grid item md={6} xs={12}>
               <Typography gutterBottom>{establishment.description}</Typography>
               <img
                 css={css`
@@ -91,7 +91,7 @@ export default function EstablishmentPage() {
                 Contact: {establishment.establishmentEmail.replace('@', ' (a) ')}
               </Typography>
             </Grid>
-            <Grid item lg={6} sm={12}>
+            <Grid item md={6} xs={12}>
               <MapView position={[establishment.latitude, establishment.longitude]} />
             </Grid>
           </Grid>

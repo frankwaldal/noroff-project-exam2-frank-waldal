@@ -35,6 +35,12 @@ const TABS_STYLES = css`
   & .MuiTabs-indicator {
     display: none;
   }
+
+  & .MuiTab-wrapper {
+    @media (max-width: 500px) {
+      font-size: 12px;
+    }
+  }
 `;
 
 export default function AdminSection() {
@@ -47,17 +53,29 @@ export default function AdminSection() {
 
   return (
     <>
-      <Button
-        color='primary'
+      <div
         css={css`
-          position: absolute;
-          right: 1rem;
+          display: flex;
+          justify-content: flex-end;
           `}
-        onClick={() => logOut()}
-        variant='contained'
         >
-        Log out
-      </Button>
+        <Button
+          color='primary'
+          css={css`
+            position: absolute;
+            right: 1rem;
+
+            @media (max-width: 760px) {
+              position: relative;
+              margin: 1rem;
+            }
+            `}
+          onClick={() => logOut()}
+          variant='contained'
+          >
+          Log out
+        </Button>
+      </div>
       <Tabs
         centered
         css={TABS_STYLES}

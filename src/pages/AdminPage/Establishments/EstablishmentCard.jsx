@@ -50,7 +50,7 @@ export default function EstablishmentCard({ establishment, successfulDeleted, to
           </Typography>
         </>
       ) : null}
-      <Grid item lg={6} md={12}>
+      <Grid item lg={6} xs={12}>
         <Grid
           container
           css={css`
@@ -61,20 +61,20 @@ export default function EstablishmentCard({ establishment, successfulDeleted, to
             `}
           spacing={2}
           >
-          <Grid item lg={12}>
+          <Grid item xs={12}>
             <Typography variant='h5' align='center' gutterBottom>
               <Link css={LINK_STYLES} to={link}>
                 {establishment.establishmentName}
               </Link>
             </Typography>
           </Grid>
-          <Grid item lg={8}>
+          <Grid item xs={12} sm={9} lg={8}>
             <Typography gutterBottom>{establishment.description}</Typography>
             <Typography gutterBottom>
               <strong>Page visited: </strong>{establishment.pageBrowsed}
             </Typography>
           </Grid>
-          <Grid>
+          <Grid item xs={12} sm={3} lg={4}>
             <Tooltip title='Delete establishment'>
               <Button onClick={() => deleteEstablishment()}>
                 <DeleteForeverOutlinedIcon />

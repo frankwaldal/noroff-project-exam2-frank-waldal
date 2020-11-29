@@ -70,9 +70,9 @@ export default function AddEstablishment() {
   function postEstablishment(values) {
     postNewEstablishmentMutation({ apiToken, payload: values });
   }
-  
+
   return (
-    <Grid item lg={12}>
+    <Grid item xs={12}>
       {postNewEstablishmentMutationStatus.isLoading ? (
         <LinearProgress variant='query' />
       ) : null}
@@ -100,8 +100,8 @@ export default function AddEstablishment() {
               grid-row-gap: 1rem;
               `}
             item
-            lg={6}
-            sm={12}
+            md={6}
+            xs={12}
             >
             <TextField
               error={!isEmpty(errors.establishmentName)}
@@ -169,8 +169,8 @@ export default function AddEstablishment() {
               grid-row-gap: 1rem;
               `}
             item
-            lg={6}
-            sm={12}
+            md={6}
+            xs={12}
             >
             <TextField
               error={!isEmpty(errors.latitude)}

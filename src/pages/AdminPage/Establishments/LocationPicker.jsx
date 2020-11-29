@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/core */
 
 import { css } from '@emotion/core';
-import { useState } from 'react';
 import { MapContainer, Marker, TileLayer, useMapEvent } from 'react-leaflet';
 
 export default function LocationPicker({

@@ -17,6 +17,12 @@ export const EXPANDED_CARD_STYLES = css`
   border-radius: 4px;
   box-shadow: 0 0 7px rgba(33, 53, 61, 0.3);
   z-index: 10;
+
+  @media (max-width: 630px) {
+    width: calc(100vw - 2rem);
+    max-height: calc(100vh - 7rem);
+    overflow-y: scroll;
+  }
 `;
 
 export default function ContactCardExpanded({ contact, toggleExpandCard }) {

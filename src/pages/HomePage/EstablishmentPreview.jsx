@@ -17,7 +17,7 @@ export default function EstablishmentPreview({ establishment }) {
   const link = `/fed/pe2/establishment/${establishment.id}`;
 
   return (
-    <Grid item lg={4} sm={12}>
+    <Grid item lg={4} md={6} xs={12}>
       <Card>
         <Link css={LINK_STYLES} to={link}>
           <CardHeader title={establishment.establishmentName} />
@@ -28,12 +28,12 @@ export default function EstablishmentPreview({ establishment }) {
             />
           <CardContent>
             <Grid container spacing={2}>
-              <Grid item lg={8}>
+              <Grid item xs={8}>
                 <Typography gutterBottom>
                   {establishment.description}
                 </Typography>
               </Grid>
-              <Grid css={css`align-self: flex-end;`} item lg={4}>
+              <Grid css={css`align-self: flex-end;`} item xs={4}>
                 <Typography
                   align='right'
                   gutterBottom
