@@ -30,7 +30,7 @@ const SEARCHBOX_STYLES = css`
   margin: 0.5rem auto;
 `;
 
-export default function EstablishmentSearchBox({ noHeader }) {
+export default function EstablishmentSearchBox() {
   const { establishments } = useGlobalContext();
   const history = useHistory();
 
@@ -40,19 +40,8 @@ export default function EstablishmentSearchBox({ noHeader }) {
   }
 
   return(
-    <div
-      css={[
-        ESTABLISHMENT_AREA_STYLES,
-        css`
-          ${noHeader ? 'min-width: 350px;' : ''}
-          ${noHeader ? 'box-shadow: none;' : ''}
-          @media (max-width: 950px) {
-            ${noHeader ? 'display: none;' : ''}
-          }
-        `
-      ]}
-      >
-      {noHeader ? null : <Typography variant='h4'>Search for a place to stay</Typography>}
+    <div css={ESTABLISHMENT_AREA_STYLES}>
+      <Typography variant='h4'>Search for a place to stay</Typography>
       <Autocomplete
         css={SEARCHBOX_STYLES}
         id='establishment-search'

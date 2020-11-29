@@ -7,10 +7,11 @@ import sortBy from 'lodash/sortBy';
 import { useQuery } from 'react-query';
 
 import BannerImage from '../../assets/bannerImage.png';
-import EstablishmentSearchBox from '../../components/EstablishmentSearchBox';
+
 import { LINK_STYLES, MAIN_TOP_MARGIN } from '../../constants/emotionCSSrules';
 import { useGlobalContext } from '../../context/GlobalContextProvider';
 import EstablishmentPreview from './EstablishmentPreview';
+import EstablishmentSearchBox from './EstablishmentSearchBox';
 import { getEstablishments } from '../../utils/apiUtils';
 
 const SEARCH_BANNER_STYLES = css`
