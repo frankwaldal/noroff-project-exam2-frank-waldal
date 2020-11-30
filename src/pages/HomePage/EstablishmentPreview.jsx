@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import { LINK_STYLES } from '../../constants/emotionCSSrules';
 
 export default function EstablishmentPreview({ establishment }) {
-  const link = `/fed/pe2/establishment/${establishment.id}`;
+  const link = `/establishment/${establishment.id}`;
 
   return (
     <Grid item lg={4} md={6} xs={12}>

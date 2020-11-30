@@ -39,7 +39,7 @@ export default function Header() {
           `}
         variant='h2'
         >
-        <Link css={LINK_STYLES} to='/fed/pe2'>Holidaze</Link>
+        <Link css={LINK_STYLES} to='/'>Holidaze</Link>
       </Typography>
       <Typography
         css={css`
@@ -54,7 +54,7 @@ export default function Header() {
             <NavLink
               activeStyle={{ borderBottom: '3px solid rgba(64, 64, 64, 0.5)' }}
               css={LINK_STYLES}
-              to='/fed/pe2/contact'
+              to='/contact'
               >
               Contact
             </NavLink>
@@ -63,7 +63,7 @@ export default function Header() {
             <NavLink
               activeStyle={{ borderBottom: '3px solid rgba(64, 64, 64, 0.5)' }}
               css={LINK_STYLES}
-              to='/fed/pe2/admin'
+              to='/admin'
               >
               Admin
             </NavLink>

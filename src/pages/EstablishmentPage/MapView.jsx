@@ -10,6 +10,7 @@ export default function MapView({ position }) {
       css={css`
         height: 500px;
         width: 100%;
+        margin-top: 4rem;
         `}
       zoom={12}
       scrollWheelZoom={true}

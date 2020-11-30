@@ -1,6 +1,7 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import Footer from './components/Footer';
 import Header from './components/Header';
 import { globalStyleTheme } from './constants/materialTheme';
 import GlobalContextProvider from './context/GlobalContextProvider';
@@ -17,20 +18,21 @@ export default function App() {
         <Router>
           <Header />
           <Switch>
-            <Route path='/fed/pe2' exact>
+            <Route path='/' exact>
               <HomePage />
             </Route>
-            <Route path='/fed/pe2/contact'>
+            <Route path='/contact'>
               <ContactPage />
             </Route>
-            <Route path='/fed/pe2/admin'>
+            <Route path='/admin'>
               <AdminPage />
             </Route>
-            <Route path='/fed/pe2/establishment'>
+            <Route path='/establishment'>
               <EstablishmentPage />
             </Route>
           </Switch>
         </Router>
+        <Footer />
       </GlobalContextProvider>
     </ThemeProvider>
   )

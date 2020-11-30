@@ -21,7 +21,7 @@ export const EXPANDED_CARD_STYLES = css`
   @media (max-width: 630px) {
     width: calc(100vw - 2rem);
     max-height: calc(100vh - 7rem);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 `;
 

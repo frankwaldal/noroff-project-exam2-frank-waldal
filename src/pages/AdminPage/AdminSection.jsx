@@ -3,6 +3,7 @@
 import { css } from '@emotion/core';
 import { Button, Tab, Tabs } from '@material-ui/core';
 import { TabContext, TabPanel } from '@material-ui/lab';
+import { useHistory } from 'react-router-dom';
 
 import { globalStyleTheme } from '../../constants/materialTheme';
 import { useGlobalContext } from '../../context/GlobalContextProvider';
@@ -45,10 +46,12 @@ const TABS_STYLES = css`
 
 export default function AdminSection() {
   const { openTab, toggleLoggedIn, updateOpenTab } = useGlobalContext();
+  const history = useHistory();
 
   function logOut() {
     localStorage.removeItem('loginToken');
     toggleLoggedIn(false);
+    history.push('/admin');
   }
 
   return (
@@ -64,6 +67,7 @@ export default function AdminSection() {
           css={css`
             position: absolute;
             right: 1rem;
+            z-index: 100;
 
             @media (max-width: 760px) {
               position: relative;

@@ -9,9 +9,9 @@ import { useState } from 'react';
 import { queryCache, useMutation, useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
 
-import MapView from '../../components/MapView';
 import { MAIN_TOP_MARGIN } from '../../constants/emotionCSSrules';
 import { useGlobalContext } from '../../context/GlobalContextProvider';
+import MapView from './MapView';
 import SendEnquiry from './SendEnquiry';
 import { getSpecificEstablishment, updateSpesificEstablishment } from '../../utils/apiUtils';
 
@@ -60,12 +60,11 @@ export default function EstablishmentPage() {
       ) : null}
       {!isEmpty(establishment) && (
         <Container css={MAIN_TOP_MARGIN}>
-          <Typography align='center' variant='h3' gutterBottom>
-            {establishment.establishmentName}
-          </Typography>
           <Grid container spacing={2}>
             <Grid item md={6} xs={12}>
-              <Typography gutterBottom>{establishment.description}</Typography>
+              <Typography align='center' variant='h4' gutterBottom>
+                {establishment.establishmentName}
+              </Typography>
               <img
                 css={css`
                   width: 100%;
@@ -74,6 +73,7 @@ export default function EstablishmentPage() {
                 src={establishment.imageUrl}
                 alt={establishment.establishmentName}
                 />
+              <Typography gutterBottom>{establishment.description}</Typography>
               <Typography gutterBottom>
                 Max guests:
                 <strong> {establishment.maxGuests}</strong>
@@ -84,7 +84,7 @@ export default function EstablishmentPage() {
                   {establishment.selfCatering ? ' Yes' : ' No'}
                 </strong>
               </Typography>
-              <Typography align='right' gutterBottom>
+              <Typography align='right' variant='h6' gutterBottom>
                 <strong>Price per night: €{establishment.price},-</strong>
               </Typography>
               <Typography gutterBottom>

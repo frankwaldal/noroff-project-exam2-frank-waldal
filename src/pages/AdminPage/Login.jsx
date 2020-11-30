@@ -91,7 +91,7 @@ export default function Login() {
             justify-content: flex-end;
             `}
           >
-          <Button color='primary' type='submit' variant='contained'>Send</Button>
+          <Button color='primary' type='submit' variant='contained'>Login</Button>
         </div>
         <Typography color='error'>{loginErrorText}</Typography>
       </form>
