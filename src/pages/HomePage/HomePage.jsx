@@ -17,7 +17,7 @@ import { getEstablishments } from '../../utils/apiUtils';
 const SEARCH_BANNER_STYLES = css`
   position: relative;
   width: 100%;
-  height: calc(100vw / 7.7);
+  height: calc(100vw / 6.4);
   min-height: 130px;
   background: url(${BannerImage});
   background-size: cover;

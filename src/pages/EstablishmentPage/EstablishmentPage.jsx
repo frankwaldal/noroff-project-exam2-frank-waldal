@@ -2,12 +2,13 @@
 
 import { css } from '@emotion/core';
 import { Button, Container, LinearProgress, Grid, Typography } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import isEmpty from 'lodash/isEmpty';
 import last from 'lodash/last';
 import { useState } from 'react';
 import { queryCache, useMutation, useQuery } from 'react-query';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { MAIN_TOP_MARGIN } from '../../constants/emotionCSSrules';
 import { useGlobalContext } from '../../context/GlobalContextProvider';
@@ -21,6 +22,7 @@ export default function EstablishmentPage() {
   const establishmentId = last(pathname.split('/'));
   const { apiToken, updateApiToken } = useGlobalContext();
   const [openSendEnquiry, toggleOpenSendEnquiry] = useState(false);
+  const history = useHistory();
 
   const [updatePageBrowsed] = useMutation(updateSpesificEstablishment, {
     onSuccess: () => {
@@ -59,8 +61,30 @@ export default function EstablishmentPage() {
         </>
       ) : null}
       {!isEmpty(establishment) && (
-        <Container css={MAIN_TOP_MARGIN}>
+        <Container css={[
+            MAIN_TOP_MARGIN,
+            css`
+              position: relative;
+            `,
+          ]}>
           <Grid container spacing={2}>
+            <Button
+              css={css`
+                position: absolute;
+                top: 1rem;
+                left: 1.5rem;
+                @media (max-width: 750px) {
+                  position: relative;
+                  margin-bottom: 1rem;
+                  left: 0.5rem;
+                }
+                `}
+              onClick={() => history.goBack()}
+              startIcon={<ArrowBackIcon />}
+              variant='contained'
+              >
+              Back
+            </Button>
             <Grid item md={6} xs={12}>
               <Typography align='center' variant='h4' gutterBottom>
                 {establishment.establishmentName}

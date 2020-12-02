@@ -18,7 +18,13 @@ export default function EstablishmentPreview({ establishment }) {
 
   return (
     <Grid item lg={4} md={6} xs={12}>
-      <Card>
+      <Card
+        css={css`
+          &:hover {
+            box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 2px 3px 3px 2px rgba(0,0,0,0.14), 2px 3px 5px 2px rgba(0,0,0,0.12);
+          }
+          `}
+        >
         <Link css={LINK_STYLES} to={link}>
           <CardHeader title={establishment.establishmentName} />
           <CardMedia
