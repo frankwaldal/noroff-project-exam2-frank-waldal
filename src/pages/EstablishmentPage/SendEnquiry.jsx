@@ -145,7 +145,7 @@ export default function SendEnquiry({ establishmentId, toggleOpenSendEnquiry }) 
           error={!isEmpty(errors.phone)}
           helperText={errors.phone ? errors.phone.message : ''}
           inputRef={register}
-          label='Your phonenumber'
+          label='Your phone number'
           name='phone'
           />
         <Typography gutterBottom>Which dates do you want to stay with us?</Typography>

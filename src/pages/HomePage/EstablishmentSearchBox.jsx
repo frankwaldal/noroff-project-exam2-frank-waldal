@@ -25,10 +25,6 @@ const ESTABLISHMENT_AREA_STYLES = css`
     height: max-content;
   }
 `;
-const SEARCHBOX_STYLES = css`
-  width: 80%;
-  margin: 0.5rem auto;
-`;
 
 export default function EstablishmentSearchBox() {
   const { establishments } = useGlobalContext();
@@ -45,7 +41,10 @@ export default function EstablishmentSearchBox() {
     <div css={ESTABLISHMENT_AREA_STYLES}>
       <Typography variant='h4'>Search for a place to stay</Typography>
       <Autocomplete
-        css={SEARCHBOX_STYLES}
+        css={css`
+          width: 80%;
+          margin: 0.5rem auto;
+        `}
         id='establishment-search'
         getOptionLabel={(establishment) => establishment.establishmentName}
         loading={establishments.length === 0}

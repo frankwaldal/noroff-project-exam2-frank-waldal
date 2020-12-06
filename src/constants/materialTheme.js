@@ -8,9 +8,6 @@ export const globalStyleTheme = createMuiTheme({
     error: {
       main: '#8f2222',
     },
-    info: {
-      main: '#4c84ff',
-    },
     primary: {
       main: '#228f38',
     },

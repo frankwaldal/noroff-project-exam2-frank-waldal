@@ -18,18 +18,18 @@ export default function EstablishmentPreview({ establishment }) {
 
   return (
     <Grid item lg={4} md={6} xs={12}>
-      <Card
-        css={css`
-          &:hover {
-            box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 2px 3px 3px 2px rgba(0,0,0,0.14), 2px 3px 5px 2px rgba(0,0,0,0.12);
-          }
-          `}
-        >
-        <Link css={LINK_STYLES} to={link}>
+      <Link css={LINK_STYLES} to={link}>
+        <Card
+          css={css`
+            &:hover {
+              box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 2px 3px 3px 2px rgba(0,0,0,0.14), 2px 3px 5px 2px rgba(0,0,0,0.12);
+            }
+            `}
+          >
           <CardHeader title={establishment.establishmentName} />
           <CardMedia
-            css={css`height: 200px;`}
             image={establishment.imageUrl}
+            style={{ height: '200px' }}
             title={establishment.establishmentName}
             />
           <CardContent>
@@ -39,7 +39,7 @@ export default function EstablishmentPreview({ establishment }) {
                   {establishment.description}
                 </Typography>
               </Grid>
-              <Grid css={css`align-self: flex-end;`} item xs={4}>
+              <Grid item style={{ alignSelf: 'flex-end' }} xs={4}>
                 <Typography
                   align='right'
                   gutterBottom
@@ -49,8 +49,8 @@ export default function EstablishmentPreview({ establishment }) {
               </Grid>
             </Grid>
           </CardContent>
-        </Link>
-      </Card>
+        </Card>
+      </Link>
     </Grid>
   )
 }

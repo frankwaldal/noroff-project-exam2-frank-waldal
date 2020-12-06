@@ -102,7 +102,7 @@ export default function ContactPage() {
           error={!isEmpty(errors.phone)}
           helperText={errors.phone ? errors.phone.message : ''}
           inputRef={register}
-          label='Your phonenumber'
+          label='Your phone number'
           name='phone'
           />
         <TextField

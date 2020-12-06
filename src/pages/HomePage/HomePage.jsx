@@ -31,7 +31,7 @@ const ATTRIBUTION_LINK_STYLE = css`
   bottom: 0;
   right: 0;
   margin: 0.75rem;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
 
   @media (max-width: 600px) {
     display: none;
@@ -57,7 +57,7 @@ export default function HomePage() {
     <>
       <div css={SEARCH_BANNER_STYLES}>
         <EstablishmentSearchBox />
-        <Typography css={css`color: #fafafa;`}>
+        <Typography style={{ color: '#fafafa' }}>
           <a
             css={[ATTRIBUTION_LINK_STYLE, LINK_STYLES]}
             href='https://unsplash.com/photos/2H0FmDFWL-w'

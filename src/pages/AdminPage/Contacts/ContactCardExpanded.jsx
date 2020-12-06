@@ -16,7 +16,7 @@ export const EXPANDED_CARD_STYLES = css`
   background: ${globalStyleTheme.palette.background.default};
   border-radius: 4px;
   box-shadow: 0 0 7px rgba(33, 53, 61, 0.3);
-  z-index: 10;
+  z-index: 100;
 
   @media (max-width: 630px) {
     width: calc(100vw - 2rem);

@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Holidaze
+
+## Noroff Frontend Development - Project Exam 2
+### by Frank Waldal
+
+This exam-project is a website to link customers with hotels, B'n'Bs, motels and similar in the Bergen region.
+The site offers possibility for the administrators to add, delete and edit establishments, read and delete enquiries regarding establishments and general contacts from users.
+Users can search within existing establishments, enquire regarding possible stays at establishments and send general contacts.
+The project is build with React 17.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

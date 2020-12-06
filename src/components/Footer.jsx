@@ -10,7 +10,6 @@ import TripadvisorLogo from '../assets/tripadvisor_main_black.svg';
 const LOGO_STYLES = css`
   height: 3rem;
   margin: 0.75rem;
-  cursor: pointer;
 `;
 
 export default function Footer() {
@@ -34,9 +33,27 @@ export default function Footer() {
             justify-content: center;
             `}
           >
-          <img css={LOGO_STYLES} src={FacebookLogo} alt='Facebook logo' />
-          <img css={LOGO_STYLES} src={InstagramLogo} alt='Facebook logo' />
-          <img css={LOGO_STYLES} src={TripadvisorLogo} alt='Facebook logo' />
+          <a
+            href='https://facebook.com'
+            rel='noopener noreferrer'
+            target='_blank'
+            >
+            <img css={LOGO_STYLES} src={FacebookLogo} alt='Facebook logo' />
+          </a>
+          <a
+            href='https://instagram.com'
+            rel='noopener noreferrer'
+            target='_blank'
+            >
+            <img css={LOGO_STYLES} src={InstagramLogo} alt='Instagram logo' />
+          </a>
+          <a
+            href='https://tripadvisor.com'
+            rel='noopener noreferrer'
+            target='_blank'
+            >
+            <img css={LOGO_STYLES} src={TripadvisorLogo} alt='Tripadvisor logo' />
+          </a>
         </div>
         <Typography align='center' gutterBottom>&#169; 2020 - Frank Waldal</Typography>
       </Container>
